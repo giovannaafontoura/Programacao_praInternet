@@ -17,7 +17,7 @@ if(isset($_POST['descricao']) && !empty (trim($_POST['descricao']))){
     $sqlInsert = "INSERT INTO tarefas (descricao) VALUES ('$descricao')"; 
 
     if($conn-> query($sqlInsert) === TRUE){
-        header('location todo-list2.php');
+      header('location:todo-list2.php');
     }
 }
 # Exclusão de tarefas
@@ -26,7 +26,7 @@ if(isset($_GET['delete'])){
   $id = intval($_GET ['delete']); 
 $sqlDelete = "DELETE FROM tarefas WHERE id = $id"; 
 
-if ($conn->query9($sqlDelete) === TRUE){
+if ($conn->query($sqlDelete) === TRUE){
     header("location: todo-list2.php") ; 
 }
 
@@ -36,8 +36,8 @@ $tarefas=[];
 # Listar tarefas
 
 $sqlSelect = "SELECT * FROM tarefas ORDER BY data_criacao DESC";
-$result  =$conn->query($sqlInsert);
-if(result->num_rows > 0 ){
+$result  =$conn->query($sqlSelect);
+if($result->num_rows > 0 ){
  while($row = $result->fetch_assoc()){
     $tarefas[]=$row;
  }
